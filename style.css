@@ -137,6 +137,11 @@ strong { font-weight: bold; }
         0 -5px 15px 0 rgba(0,0,0,.05);
 }
 
+#portfolio_flexslider {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
 .flex-caption {
     position: absolute;
     bottom: 20px;
