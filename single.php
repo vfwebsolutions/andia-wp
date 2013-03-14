@@ -35,7 +35,7 @@
         <!-- Content -->
         <div class="single-page container">
             <div class="row">
-                <div class="single-page-text span4 textleft">
+                <div class="single-page-text span6 textleft">
                     <?php echo the_content(); ?>
 
                    <?php echo "<pre>";
@@ -48,7 +48,7 @@
         ?>
                 </div>
 
-                <div class="single-page-text span8 textleft">
+                <div class="single-page-text span6 textleft">
                     
                 <?php 
                     if ($portfolio_meta['featured_attachment_type'] == "images") {
