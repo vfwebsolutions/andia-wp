@@ -45,6 +45,11 @@
         echo "<br />POrtfolio Meta<pre>";
         print_r($portfolio_meta);
         echo "</pre>";
+
+        echo "<br />Post Meta<pre>";
+        $post_meta = get_post_meta( get_the_ID());
+        print_r($portfolio_meta);
+        echo "</pre>";
         ?>
                 </div>
 

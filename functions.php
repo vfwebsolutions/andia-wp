@@ -199,7 +199,36 @@ $page_extra_metabox = new WPAlchemy_MetaBox(array
     'types' => array('page', 'portfolio', 'post')
 ));
 
+/**
+ *  Custom Column for Portfolio Post Type Admin page
+ */
 
+// Change the columns for the edit Portfolio screen
+function change_columns( $cols ) {
+  $cols = array(
+    'cb'       => '<input type="checkbox" />',
+    'title'      => __( 'Work Title',      'trans' ),
+    'skill-type' => __( 'Skill Types', 'trans' ),
+    'date'     => __( 'Date', 'trans' ),
+    'work_thumbnail'     => __( 'Thumbnail', 'trans' ),
+  );
+  return $cols;
+}
+add_filter( "manage_portfolio_posts_columns", "change_columns" );
 
+function custom_columns( $column, $post_id ) {
+  global $post;
+  switch ( $column ) {
+    case "skill-type":
+      $skill_type = get_the_term_list($post->ID,'skill-type','',', ','');
+      echo $skill_type;
+      break;
+    case "work_thumbnail":
+      echo get_post_meta( $post->ID, 'video_thumbnail', true);
+      break;
+  }
+}
+
+add_action( "manage_posts_custom_column", "custom_columns", 10, 2 );
 
 ?>
