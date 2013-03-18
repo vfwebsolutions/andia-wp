@@ -123,6 +123,7 @@ function add_custom_taxonomies() {
 	register_taxonomy('skill-type', 'portfolio', array(
 		// Hierarchical taxonomy (like categories)
 		'hierarchical' => true,
+		'show_admin_column' => true,
 		// This array of options controls the labels displayed in the WordPress Admin UI
 		'labels' => array(
 			'name' => _x( 'Skill Types', 'taxonomy general name' ),
@@ -141,7 +142,7 @@ function add_custom_taxonomies() {
 		'rewrite' => array(
 			'slug' => 'skill-type', // This controls the base slug that will display before each term
 			'with_front' => false, // Don't display the category base before "/skill-type/"
-			'hierarchical' => true // This will allow URL's like "/skill-type/css/"
+			'hierarchical' => true // This will allow URL's like "/skill-type/css/",
 		),
 	));
 }
@@ -197,6 +198,7 @@ $page_extra_metabox = new WPAlchemy_MetaBox(array
     'template' => STYLESHEETPATH . '/assets/meta_templates/page_extra_meta.php',
     'types' => array('page', 'portfolio', 'post')
 ));
+
 
 
 
