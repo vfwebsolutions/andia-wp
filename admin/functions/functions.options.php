@@ -118,16 +118,19 @@ $of_options[] = array( "name" => "Homepage Slider",
 					"desc" => "Check this checkbox if you want to display the Home Page Slider",
 					"id" => "hp_slider",
 					"std" => 0,
-          			"folds" => 1,
 					"type" => "checkbox");
 					
 $of_options[] = array( "name" => "Slider",
 					"desc" => "Unlimited slider with drag and drop sortings.",
 					"id" => "pingu_slider",
 					"std" => "",
-					"fold" => "hp_slider", // Checkbox Hook
 					"type" => "slider");
 
+$of_options[] = array( "name" => __('Enable/Disable Twitter Icon', 'framework'),
+					"desc" => __('Enable or disable the top page twitter icon', 'framework'),
+					"id" => "twitter_icon_hide",
+					"std" => 0,
+					"type" => "checkbox");
 
 /**
  * General Settings

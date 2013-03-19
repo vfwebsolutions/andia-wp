@@ -94,6 +94,7 @@ function of_load_only()
 	wp_enqueue_script('tipsy', ADMIN_DIR .'assets/js/jquery.tipsy.js', array( 'jquery' ));
 	wp_enqueue_script('color-picker', ADMIN_DIR .'assets/js/colorpicker.js', array('jquery'));
 	wp_enqueue_script('ajaxupload', ADMIN_DIR .'assets/js/ajaxupload.js', array('jquery'));
+	wp_enqueue_script('ibutton', ADMIN_DIR.'assets/js/jquery.ibutton.js', array('jquery'));
 	wp_enqueue_script('cookie', ADMIN_DIR . 'assets/js/cookie.js', 'jquery');
 	wp_enqueue_script('smof', ADMIN_DIR .'assets/js/smof.js', array( 'jquery' ));
 }
@@ -109,7 +110,7 @@ function of_admin_head() { ?>
 
 	jQuery.noConflict();
 	jQuery(document).ready(function($){
-	
+	jQuery(":checkbox").iButton();
 		// COLOR Picker			
 		$('.colorSelector').each(function(){
 			var Othis = this; //cache a copy of the this variable for use inside nested function
