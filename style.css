@@ -119,7 +119,7 @@ strong { font-weight: bold; }
         0 -5px 15px 0 rgba(0,0,0,.05) inset;
 }
 
-.flexslider, .portfolio_flexslider {
+.flexslider {
     margin-top: 45px;
     margin-bottom: 55px;
     border: 6px solid #fff;
@@ -135,11 +135,6 @@ strong { font-weight: bold; }
     box-shadow:
         0 5px 15px 0 rgba(0,0,0,.05),
         0 -5px 15px 0 rgba(0,0,0,.05);
-}
-
-#portfolio_flexslider {
-    margin-top: 10px;
-    margin-bottom: 20px;
 }
 
 .flex-caption {

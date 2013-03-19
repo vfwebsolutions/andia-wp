@@ -84,4 +84,53 @@
             </div>
         </div>
 
+        <?php
+        $args = array(
+            'posts_per_page' => -1,
+            'post_type' => 'testimonials',
+            'orderby' => 'date',
+        );
+     
+        $query = new WP_Query( $args  );
+
+        if ( $query->have_posts() ) {
+        ?>
+        <script type="text/javascript" charset="utf-8">
+          $(window).load(function() {
+            $('.tab-content').flexslider({
+                  animation: "slide",
+                  slideshowSpeed: 7000,
+                  pauseOnHover: true,
+            });
+          });
+        </script>
+        <!-- Testimonials -->
+        <div class="testimonials container">
+            <div class="testimonials-title">
+                <h3>Testimonials</h3>
+            </div>
+            <div class="row">
+                <div class="testimonial-list span12">
+                    <div class="tabbable tabs-below">
+                        <div class="tab-content flexslider">
+                            <ul class="slides">
+                                <?php while ( $query->have_posts() ) : $query->the_post(); ?>
+                                <li>
+                                    <div class="tab-pane active" id="A">
+                                        <img src="assets/img/testimonials/1.jpg" title="" alt="">
+                                        <p>"<?php the_content(); ?>"<br /><span class="violet">Lorem Ipsum, dolor.co.uk</span></p>
+                                    </div>
+                                </li>
+                            <?php endwhile;  wp_reset_postdata(); ?>
+                            </ul>
+                        </div>
+                       <div class="nav nav-tabs">
+                       </div>
+                   </div>
+                </div>
+            </div>
+        </div>
+
+        <?php } ?>
+
 <?php get_footer(); ?>

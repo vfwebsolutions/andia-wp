@@ -110,6 +110,36 @@ function add_custom_post_types() {
 	
 		)
 	);
+
+// Register Post Type for Customer Testimonials
+	register_post_type( 'testimonials', 
+		array(
+        	'labels' => array(
+		        'name' => 'Testimonials',
+		        'singular_name' => 'Testimonial',
+		        'add_new' => 'Add New',
+		        'add_new_item' => 'Add New Testimonial',
+		        'edit_item' => 'Edit Testimonial',
+		        'new_item' => 'New Testimonial',
+		        'view_item' => 'View Testimonial',
+		        'search_items' => 'Search Testimonials',
+		        'not_found' =>  'No Testimonials found',
+		        'not_found_in_trash' => 'No Testimonials in the trash',
+		        'parent_item_colon' => '',
+    	),
+        'public' => true,
+        'publicly_queryable' => true,
+        'show_ui' => true,
+        'exclude_from_search' => true,
+        'query_var' => true,
+        'rewrite' => true,
+        'capability_type' => 'post',
+        'has_archive' => true,
+        'hierarchical' => false,
+        'supports' => array( 'editor', 'title' )
+
+    	) 
+	);
 	
 }
 add_action( 'init', 'add_custom_post_types' );
@@ -199,11 +229,19 @@ $page_extra_metabox = new WPAlchemy_MetaBox(array
     'types' => array('page', 'portfolio', 'post')
 ));
 
+$testimonials_metabox = new WPAlchemy_MetaBox(array
+(
+    'id' => '_testimonials_meta',
+    'title' => 'Customer Testimonial Details',
+    'template' => STYLESHEETPATH . '/assets/meta_templates/testimonials_meta.php',
+    'types' => array('testimonials')
+));
+
 /**
- *  Custom Column for Portfolio Post Type Admin page
+ *  Custom Column for Admin page
  */
 
-// Change the columns for the edit Portfolio screen
+// Change the columns for the edit Portfolio screen and then add content to them
 function change_columns( $cols ) {
   $cols = array(
     'cb'       => '<input type="checkbox" />',
@@ -217,18 +255,56 @@ function change_columns( $cols ) {
 add_filter( "manage_portfolio_posts_columns", "change_columns" );
 
 function custom_columns( $column, $post_id ) {
-  global $post;
+  $portfolio_data = get_post_meta( $post_id, '_portfolio_meta', true );
   switch ( $column ) {
     case "skill-type":
       $skill_type = get_the_term_list($post->ID,'skill-type','',', ','');
       echo $skill_type;
       break;
     case "work_thumbnail":
-      echo get_post_meta( $post->ID, 'video_thumbnail', true);
+      echo "<img src=\"".$portfolio_data['video_thumbnail']."\" height=\"90\" />";
       break;
   }
 }
-
 add_action( "manage_posts_custom_column", "custom_columns", 10, 2 );
+
+// Change the columns for Testimonials and then add content to them
+add_filter( 'manage_edit-testimonials_columns', 'testimonials_edit_columns' );
+function testimonials_edit_columns( $columns ) {
+    $columns = array(
+        'cb' => '<input type="checkbox" />',
+        'title' => 'Title',
+        'testimonial' => 'Testimonial',
+        'testimonial-client-name' => 'Client\'s Name',
+        'testimonial-source' => 'Business/Site',
+        'testimonial-link' => 'Link',
+        'author' => 'Posted by',
+        'date' => 'Date'
+    );
+ 
+    return $columns;
+}
+
+add_action( 'manage_posts_custom_column', 'testimonials_columns', 10, 2 );
+function testimonials_columns( $column, $post_id ) {
+    $testimonial_data = get_post_meta( $post_id, '_testimonials_meta', true );
+    switch ( $column ) {
+        case 'testimonial':
+            the_excerpt();
+            break;
+        case 'testimonial-client-name':
+            if ( ! empty( $testimonial_data['client_name'] ) )
+                echo $testimonial_data['client_name'];
+            break;
+        case 'testimonial-source':
+            if ( ! empty( $testimonial_data['business_site_name'] ) )
+                echo $testimonial_data['business_site_name'];
+            break;
+        case 'testimonial-link':
+            if ( ! empty( $testimonial_data['url_link'] ) )
+                echo "<a href=\"".$testimonial_data['url_link']."\" target=\"_blank\">".$testimonial_data['url_link']."</a>";
+            break;
+    }
+}
 
 ?>
