@@ -13,10 +13,10 @@ remove_action( 'wp_head', 'wp_generator' );
 /**
  *  Remove Version from RSS Feeds
  */
-function wps_remove_version() {
-	return '';
+function remove_wp_version () {
+    return '';
 }
-add_filter( 'the_generator', 'wps_remove_version' );
+add_filter ( 'the_generator', 'remove_wp_version' );
 
 /**
  *  Load all the CSS Files
