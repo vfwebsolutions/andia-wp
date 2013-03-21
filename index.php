@@ -1,5 +1,45 @@
 <?php get_header(); ?>
 
+        <!-- Page Title -->
+    <div class="page-title">
+        <div class="container">
+            <div class="row">
+                <div class="span12">
+                    <i class="icon-envelope-alt page-title-icon"></i>
+                    <h2>Latest Posts / </h2>
+                    <p>Check out our latest posts</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Latest Work -->
+    <div class="portfolio container">
+        <div class="row">
+<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+    
+            <div class="work span3">
+                <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/portfolio/work1.jpg" alt="">
+                <h4><?php the_title(); ?></h4>
+                <p><?php echo wp_trim_words( get_the_content(), 12, " ..."); ?></p>
+                <div class="icon-awesome">
+                    <a href="<?php the_permalink(); ?>"><i class="icon-link"></i></a>
+                </div>
+            </div>
+
+<?php endwhile; ?>
+<!-- post navigation -->
+<?php else: ?>
+    
+            <div class="work span3">
+                
+                <h4>Zero Results</h4>
+                <p>Sorry no posts found ... </p>
+            </div>
+
+<?php endif; ?>
+        </div>
+    </div>
         <!-- Latest Work -->
         <div class="portfolio container">
             <div class="portfolio-title">
