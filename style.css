@@ -388,6 +388,7 @@ strong { font-weight: bold; }
 .portfolio .work p {
     line-height: 24px;
     font-style: italic;
+    padding: 0 5px;
 }
 
 
