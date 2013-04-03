@@ -19,6 +19,11 @@ function remove_wp_version () {
 add_filter ( 'the_generator', 'remove_wp_version' );
 
 /**
+ * Add Theme Support
+ */
+add_theme_support( 'post-thumbnails',  array('post') );
+
+/**
  *  Load all the CSS Files
  */
 
