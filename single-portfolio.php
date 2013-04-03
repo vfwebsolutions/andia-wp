@@ -35,19 +35,59 @@
         <!-- Content -->
         <div class="single-page container">
             <div class="row">
-
-                <!-- Post Thumbnail in Big -->
-                <div class="span8">
-                    <div class="span8">
-                        <?php the_post_thumbnail(); ?>
-                    </div>
-                    <div class="single-page-text span8 textleft">
+                <div class="single-page-text span6 textleft">
                     <?php echo the_content(); ?>
-                </div>
+
+                   <?php echo "<pre>";
+        print_r($page_extra_meta);
+        echo "</pre>";
+
+        echo "<br />POrtfolio Meta<pre>";
+        print_r($portfolio_meta);
+        echo "</pre>";
+
+        echo "<br />Post Meta<pre>";
+        $post_meta = get_post_meta( get_the_ID());
+        print_r($portfolio_meta);
+        echo "</pre>";
+        ?>
                 </div>
 
-                
-
+                <div class="single-page-text span6 textleft">
+                    
+                <?php 
+                    if ($portfolio_meta['featured_attachment_type'] == "images") {
+                ?>
+                    <div id="portfolio_flexslider" class="flexslider">
+                        <ul class="slides">
+                        <script>
+                            /*
+                                Slider
+                            */
+                            $(window).load(function() {
+                                $('.flexslider').flexslider({
+                                    animation: "slide"
+                                });
+                            });
+                        </script>
+                            <?php 
+                            foreach ($portfolio_meta['work_images_group'] as $work_img) { ?>
+                            <li data-thumb="<?php echo $work_img['work_img']; ?>">
+                                <img src="<?php echo $work_img['work_img']; ?>">
+                            </li>
+                            <?php } ?>
+                        </ul>
+                    </div>
+                <?php } else { ?>
+                    <div id="portfolio_flexslider" class="flexslider">
+                        <ul class="slides">
+                            <li data-thumb="<?php echo $portfolio_meta['video_thumbnail']; ?>">
+                                <img src="<?php echo $portfolio_meta['video_thumbnail']; ?>" alt="">
+                            </li>
+                        </ul>
+                    </div>
+                <?php } ?>
+                </div>
             </div>
         </div>
         <?php endwhile; ?>
