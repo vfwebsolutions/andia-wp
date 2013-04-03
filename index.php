@@ -19,7 +19,7 @@
 <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
     
             <div class="work span3">
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/portfolio/work1.jpg" alt="">
+                <?php the_post_thumbnail(); ?>
                 <h4><?php the_title(); ?></h4>
                 <p><?php echo wp_trim_words( get_the_content(), 12, " ..."); ?></p>
                 <div class="icon-awesome">
