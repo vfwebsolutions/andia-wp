@@ -37,20 +37,6 @@
             <div class="row">
                 <div class="single-page-text span6 textleft">
                     <?php echo the_content(); ?>
-
-                   <?php echo "<pre>";
-        print_r($page_extra_meta);
-        echo "</pre>";
-
-        echo "<br />POrtfolio Meta<pre>";
-        print_r($portfolio_meta);
-        echo "</pre>";
-
-        echo "<br />Post Meta<pre>";
-        $post_meta = get_post_meta( get_the_ID());
-        print_r($portfolio_meta);
-        echo "</pre>";
-        ?>
                 </div>
 
                 <div class="single-page-text span6 textleft">
