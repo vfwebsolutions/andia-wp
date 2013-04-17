@@ -312,4 +312,19 @@ function testimonials_columns( $column, $post_id ) {
     }
 }
 
+
+/**
+ *  Add Footer Widget Area
+ */
+
+register_sidebar(array(
+	'name'          => __( 'Footer Sidebar' ),
+	'id'            => 'footer-sidebar',
+	'description'   => __( 'Footer Widget Area.' ),
+        'class'         => '',
+	'before_widget' => '<div id="%1$s" class="widget span3 %2$s">',
+	'after_widget'  => '</div>',
+	'before_title'  => '<h4 class="widgettitle">',
+	'after_title'   => '</h4>' ));
+
 ?>
